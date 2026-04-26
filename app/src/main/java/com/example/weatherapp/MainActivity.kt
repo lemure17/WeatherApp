@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.weatherapp.ui.theme.WeatherAppTheme
 
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity() { // classe principal para criação do projeto
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
