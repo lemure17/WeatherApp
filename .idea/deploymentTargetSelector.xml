@@ -13,7 +13,7 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="LoginActivity">
+      <SelectionState runConfigName="HomePage">
         <option name="selectionMode" value="DROPDOWN" />
         <DropdownSelection timestamp="2026-05-28T15:26:02.837371500Z">
           <Target type="DEFAULT_BOOT">
