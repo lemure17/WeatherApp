@@ -48,7 +48,7 @@ fun HomePage(modifier: Modifier =  Modifier){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,)
     {
-        Text(text = "Bem vindo/a!", fontSize = 24.sp, color = Color.White)
+        Text(text = "Bem vindo/a!", fontSize = 24.sp,)
 
         Spacer(modifier = Modifier.size(12.dp))
 
