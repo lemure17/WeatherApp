@@ -1,6 +1,5 @@
 package com.example.weatherapp
 
-import android.R.attr.enabled
 import android.app.Activity
 import android.os.Bundle
 import android.widget.Toast
@@ -50,21 +49,21 @@ fun LoginPage(modifier: Modifier = Modifier) {
     var password by rememberSaveable { mutableStateOf("") }
     val activity = LocalActivity.current as Activity
     Column(
-        modifier = modifier.fillMaxSize().padding(all = 24.dp),
+        modifier = modifier
+            .fillMaxSize()
+            .padding(all = 24.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "Bem-vindo/a!",
-            fontSize = 24.sp
+            text = "Bem-vindo/a!", fontSize = 24.sp
         )
         Spacer(modifier = Modifier.size(12.dp))
         OutlinedTextField(
             value = email,
             label = { Text(text = "Digite seu e-mail") },
             modifier = modifier,
-            onValueChange = { email = it }
-        )
+            onValueChange = { email = it })
         Spacer(modifier = Modifier.size(12.dp))
         OutlinedTextField(
             value = password,
@@ -73,19 +72,21 @@ fun LoginPage(modifier: Modifier = Modifier) {
             onValueChange = { password = it },
             visualTransformation = PasswordVisualTransformation()
         )
-        Row(modifier = modifier.padding(12.dp).fillMaxWidth()) {
-            Button(  onClick = {
-                Toast.makeText(activity, "Login OK!", Toast.LENGTH_LONG).show()
-            } )
+        Row(
+            modifier = modifier
+                .padding(12.dp)
+                .fillMaxWidth()
+        ) {
+            Button(
+                onClick = { Toast.makeText(activity, "Login OK!", Toast.LENGTH_LONG).show() },
+                enabled = email.isNotEmpty() && password.isNotEmpty()
+            )
 
-            {
-                enabled = email.isNotEmpty() && password.isNotEmpty(),
-                Text("Login")
-            }
+            { Text("Login") }
+
             Button(
 
-                onClick = { email = ""; password = "" ,}
-            ) {
+                onClick = { email = ""; password = "" }) {
                 Text("Limpar")
             }
         }
