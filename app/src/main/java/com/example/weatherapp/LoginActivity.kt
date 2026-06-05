@@ -73,9 +73,11 @@ fun LoginPage(modifier: Modifier = Modifier) {
             visualTransformation = PasswordVisualTransformation()
         )
         Row(
-            modifier = modifier
-                .padding(12.dp)
+            modifier = Modifier
                 .fillMaxWidth()
+                .padding(12.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Button(
                 onClick = { Toast.makeText(activity, "Login OK!", Toast.LENGTH_LONG).show()

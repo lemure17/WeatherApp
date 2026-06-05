@@ -64,14 +64,14 @@ fun RegisterPage(modifier: Modifier = Modifier) {
         OutlinedTextField(
             value = name,
             label = { Text(text = "Digite seu nome") },
-            modifier = modifier,
+            modifier = Modifier.fillMaxWidth(),
             onValueChange = { name = it })
 
         Spacer(modifier = Modifier.size(12.dp))
         OutlinedTextField(
             value = email,
             label = { Text(text = "Digite seu e-mail") },
-            modifier = modifier,
+            modifier = Modifier.fillMaxWidth(),
             onValueChange = { email = it })
 
         Spacer(modifier = Modifier.size(12.dp))
@@ -79,7 +79,7 @@ fun RegisterPage(modifier: Modifier = Modifier) {
         OutlinedTextField(
             value = password,
             label = { Text(text = "Digite sua senha") },
-            modifier = modifier,
+            modifier = Modifier.fillMaxWidth(),
             onValueChange = { password = it },
             visualTransformation = PasswordVisualTransformation()
         )
@@ -87,14 +87,16 @@ fun RegisterPage(modifier: Modifier = Modifier) {
         OutlinedTextField(
             value = confirmPassword,
             label = { Text(text = "Confirme sua senha") },
-            modifier = modifier,
+            modifier = Modifier.fillMaxWidth(),
             onValueChange = { confirmPassword = it },
             visualTransformation = PasswordVisualTransformation()
         )
         Row(
-            modifier = modifier
-                .padding(12.dp)
+            modifier = Modifier
                 .fillMaxWidth()
+                .padding(12.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Button(
                 onClick = {
@@ -105,6 +107,17 @@ fun RegisterPage(modifier: Modifier = Modifier) {
             )
 
             { Text("Registrar") }
+
+            Spacer(modifier = Modifier.size(12.dp))
+            Button(
+                onClick = {
+                activity.finish()
+                }
+            ) {
+                Text("Voltar")
+            }
+
+            Spacer(modifier = Modifier.size(12.dp))
 
             Button(
 
