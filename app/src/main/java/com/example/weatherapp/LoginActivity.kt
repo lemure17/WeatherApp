@@ -47,6 +47,7 @@ fun LoginPage(modifier: Modifier = Modifier) {
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     val activity = LocalActivity.current as Activity
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -86,6 +87,18 @@ fun LoginPage(modifier: Modifier = Modifier) {
             )
 
             { Text("Login") }
+
+            Button (
+
+                onClick = {activity.startActivity(
+                    Intent(activity, RegisterActivity::class.java).setFlags(
+                        Intent.FLAG_ACTIVITY_SINGLE_TOP
+                    )
+
+                )}
+
+
+            ){ Text("Registrar")}
 
             Button(
 
