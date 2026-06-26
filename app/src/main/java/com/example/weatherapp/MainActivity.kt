@@ -2,8 +2,10 @@ package com.example.weatherapp
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -16,6 +18,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,11 +26,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.weatherapp.ui.components.CityDialog
 import com.example.weatherapp.viewmodel.MainViewModel
 import com.example.weatherapp.ui.nav.BottomNavBar
 import com.example.weatherapp.ui.nav.BottomNavItem
 import com.example.weatherapp.ui.nav.MainNavHost
+import com.example.weatherapp.ui.nav.Route
 import com.example.weatherapp.ui.theme.WeatherAppTheme
 
 
@@ -40,6 +45,13 @@ class MainActivity : ComponentActivity() { // classe principal para criação do
             val navController = rememberNavController()
             val viewModel: MainViewModel = viewModel()
             var showDialog by remember { mutableStateOf(false) }
+
+            val currentRoute = navController.currentBackStackEntryAsState()
+            val showButton = currentRoute.value?.destination?.let {
+                it.hasRoute<Route.List>() || it.hasRoute<Route.Map>()
+            } ?: false
+            val launcher = rememberLauncherForActivityResult(contract =
+                ActivityResultContracts.RequestPermission(), onResult = {} )
             WeatherAppTheme {
 
                     if (showDialog) CityDialog(
@@ -73,12 +85,16 @@ class MainActivity : ComponentActivity() { // classe principal para criação do
                         BottomNavBar(navController = navController, items)
                     },
                     floatingActionButton = {
-                        FloatingActionButton(onClick = { showDialog = true }) {
-                            Icon(Icons.Default.Add, contentDescription = "Adicionar")
-                        }
+                            if (showButton) {
+                                FloatingActionButton (onClick = { showDialog = true }) {
+                                    Icon(Icons.Default.Add, contentDescription = "Adicionar")
+                                }
+                            }
+
                     }
                 ) { innerPadding ->
                     Box(modifier = Modifier.padding(innerPadding)) {
+                        launcher.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
                         MainNavHost(navController = navController, viewModel = viewModel)
                     }
                 }
