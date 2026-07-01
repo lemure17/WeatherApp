@@ -49,11 +49,12 @@ fun CityDialog(onDismiss: () -> Unit, onConfirm: (city: String) -> Unit) {
                     value = cityName.value,
                     onValueChange = { cityName.value = it })
                 Spacer(modifier = Modifier.height(20.dp))
+
+                Button(
+                    onClick = { onConfirm(cityName.value) },
+                    modifier = Modifier.fillMaxWidth().height(50.dp)
+                ) { Text(text = "OK") }
             }
-            Button(
-                onClick = { onConfirm(cityName.value) },
-                modifier = Modifier.fillMaxWidth().height(50.dp)
-            ) { Text(text = "OK") }
         }
         }
     }
