@@ -9,9 +9,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.example.weatherapp" />
-                  <option name="mobileSdkAppId" value="1:100594564575:android:a4eff13c0e13e24f07586a" />
-                  <option name="projectId" value="weatherapp-8be79f2f" />
-                  <option name="projectNumber" value="100594564575" />
+                  <option name="mobileSdkAppId" value="1:502290657664:android:e9bc49fe51be37318c1165" />
+                  <option name="projectId" value="encoded-alpha-500723-p5" />
+                  <option name="projectNumber" value="502290657664" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
