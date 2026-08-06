@@ -45,7 +45,7 @@ fun MapPage(
         properties = MapProperties(isMyLocationEnabled = hasLocationPermission),
         uiSettings = MapUiSettings(myLocationButtonEnabled = true),
                 onMapClick = {
-            viewModel.add("Cidade@${it.latitude}:${it.longitude}", location = it)
+            viewModel.addCity(location = it)
         }
     ) {
         // Marcadores dinâmicos vindos do ViewModel
